@@ -13,18 +13,6 @@ def getVersionName = { ->
 group 'de.dynamobeuth.multiscreen'
 version getVersionName()
 
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-}
-
 apply plugin: 'java'
 
 sourceCompatibility = 1.8
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
