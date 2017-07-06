@@ -14,10 +14,6 @@ group 'de.dynamobeuth.multiscreen'
 version getVersionName()
 
 buildscript {
-    dependencies {
-        /*classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'*/
-    }
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -32,10 +28,3 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-/*apply plugin: 'javafx-gradle-plugin'*/
-
