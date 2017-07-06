@@ -10,9 +10,11 @@ def getVersionName = { ->
     return stdout.toString().trim()
 }
 
-group 'de.dynamobeuth.multiscreen'
-version getVersionName()
-
 apply plugin: 'java'
+apply plugin: 'maven'
+
+group 'de.dynamobeuth.multiscreen'
 
 sourceCompatibility = 1.8
+
+version getVersionName()
