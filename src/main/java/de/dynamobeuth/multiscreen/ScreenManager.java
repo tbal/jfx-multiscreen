@@ -36,7 +36,7 @@ public class ScreenManager extends Pane {
 
     private Set<String> screensShown = new HashSet<>();
 
-    private Pane loadIndicatorOverlay;
+    private Pane loadingIndicatorOverlay;
 
 //    public ObservableValue<? extends EventHandler<? super KeyEvent>> onOnKeyPressedProperty;
 
@@ -220,26 +220,26 @@ public class ScreenManager extends Pane {
         return controller;
     }
 
-    public void showLoadIndicatorOverlay() {
-        if (loadIndicatorOverlay == null) {
-            initLoadIndicatorOverlay();
+    public void showLoadingIndicatorOverlay() {
+        if (loadingIndicatorOverlay == null) {
+            initLoadingIndicatorOverlay();
         }
 
-        this.getChildren().add(loadIndicatorOverlay);
+        this.getChildren().add(loadingIndicatorOverlay);
     }
 
-    public void hideLoadIndicatorOverlay() {
-        if (loadIndicatorOverlay != null) {
-            this.getChildren().remove(loadIndicatorOverlay);
+    public void hideLoadingIndicatorOverlay() {
+        if (loadingIndicatorOverlay != null) {
+            this.getChildren().remove(loadingIndicatorOverlay);
         }
     }
 
-    protected void initLoadIndicatorOverlay() {
-        loadIndicatorOverlay = new Pane();
-        loadIndicatorOverlay.getStyleClass().add("load-indicator-overlay");
-        loadIndicatorOverlay.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
-        loadIndicatorOverlay.minWidthProperty().bind(this.widthProperty());
-        loadIndicatorOverlay.minHeightProperty().bind(this.heightProperty());
+    protected void initLoadingIndicatorOverlay() {
+        loadingIndicatorOverlay = new Pane();
+        loadingIndicatorOverlay.getStyleClass().add("loading-indicator-overlay");
+        loadingIndicatorOverlay.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
+        loadingIndicatorOverlay.minWidthProperty().bind(this.widthProperty());
+        loadingIndicatorOverlay.minHeightProperty().bind(this.heightProperty());
     }
 
     public String getSkin() {
