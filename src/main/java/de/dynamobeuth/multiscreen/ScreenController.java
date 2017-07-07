@@ -25,36 +25,31 @@ abstract public class ScreenController {
     /**
      * Will be called once after initialize() and after application and screenManager were injected
      */
-    protected void prepare() {
-    }
+    abstract protected void prepare();
 
     /**
      * Will be called once when the screen is shown for the first time
      * and just before the screen is added to its root and before possible screen transition animations
      */
-    protected void onBeforeFirstShow() {
-    }
+    abstract protected void onBeforeFirstShow();
 
     /**
      * Will be called every time the screen is to be shown
      * and just before the screen is added to its root and before possible screen transition animations
      */
-    protected void onBeforeShow() {
-    }
+    abstract protected void onBeforeShow();
 
     /**
      * Will be called once when the screen is shown for the first time
      * and when possible screen transition animations are just finished
      */
-    protected void onFirstShow() {
-    }
+    abstract protected void onFirstShow();
 
     /**
      * Will be called every time the screen is shown
      * and when possible screen transition animations are just finished
      */
-    protected void onShow() {
-    }
+    abstract protected void onShow();
 
     // TODO: integration should be possible; wait for use-case before implementation
 //    public void beforeHide() {
