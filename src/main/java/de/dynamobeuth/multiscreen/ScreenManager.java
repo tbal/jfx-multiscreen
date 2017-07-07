@@ -16,9 +16,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Enumeration;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -35,6 +33,8 @@ public class ScreenManager extends Pane {
     private String currentScreenName = null;
 
     private SimpleBooleanProperty closeRequestActive = new SimpleBooleanProperty(false);
+
+    private Set<String> screensShown = new HashSet<>();
 
 //    public ObservableValue<? extends EventHandler<? super KeyEvent>> onOnKeyPressedProperty;
 
@@ -136,11 +136,13 @@ public class ScreenManager extends Pane {
                 getChildren().remove(0);
             }
 
-            getControllerByName(name).beforeShow();
+            ScreenController screenController = getControllerByName(name);
+
+            handleControllerBeforeShowMethods(name, screenController);
 
             getChildren().add(screen);
 
-            getControllerByName(name).show();
+            handleControllerShowMethods(name, screenController);
 
         } catch (InvalidNameException e) {
             e.printStackTrace();
@@ -162,12 +164,12 @@ public class ScreenManager extends Pane {
 
             ScreenController screenController = getControllerByName(name);
 
-            screenController.beforeShow();
+            handleControllerBeforeShowMethods(name, screenController);
 
             if (!getChildren().isEmpty()) {
-                animation.animate(this, getChildren().get(0), screen, e -> screenController.show());
+                animation.animate(this, getChildren().get(0), screen, e -> handleControllerShowMethods(name, screenController));
             } else {
-                animation.animate(this, null, screen, e -> screenController.show());
+                animation.animate(this, null, screen, e -> handleControllerShowMethods(name, screenController));
             }
 
         } catch (InvalidNameException e) {
@@ -177,6 +179,23 @@ public class ScreenManager extends Pane {
         }
 
         return true;
+    }
+
+    private void handleControllerBeforeShowMethods(String name, ScreenController screenController) {
+        if (!screensShown.contains(name)) {
+            screenController.onBeforeFirstShow();
+        }
+
+        screenController.onBeforeShow();
+    }
+
+    private void handleControllerShowMethods(String name, ScreenController screenController) {
+        if (!screensShown.contains(name)) {
+            screenController.onFirstShow();
+            screensShown.add(name);
+        }
+
+        screenController.onShow();
     }
 
     public LinkedHashMap<String, Parent> getScreens() {
