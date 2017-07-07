@@ -195,7 +195,9 @@ public class ScreenManager extends Pane {
             screensShown.add(name);
         }
 
-        screenController.onShow();
+        if (currentScreenNameMatches(name)) {
+            screenController.onShow();
+        }
     }
 
     public LinkedHashMap<String, Parent> getScreens() {
