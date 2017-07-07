@@ -36,6 +36,8 @@ public class ScreenManager extends Pane {
 
     private Set<String> screensShown = new HashSet<>();
 
+    private Pane loadIndicatorOverlay;
+
 //    public ObservableValue<? extends EventHandler<? super KeyEvent>> onOnKeyPressedProperty;
 
     public ScreenManager(Application application) {
@@ -216,6 +218,28 @@ public class ScreenManager extends Pane {
         }
 
         return controller;
+    }
+
+    public void showLoadIndicatorOverlay() {
+        if (loadIndicatorOverlay == null) {
+            initLoadIndicatorOverlay();
+        }
+
+        this.getChildren().add(loadIndicatorOverlay);
+    }
+
+    public void hideLoadIndicatorOverlay() {
+        if (loadIndicatorOverlay != null) {
+            this.getChildren().remove(loadIndicatorOverlay);
+        }
+    }
+
+    protected void initLoadIndicatorOverlay() {
+        loadIndicatorOverlay = new Pane();
+        loadIndicatorOverlay.getStyleClass().add("load-indicator-overlay");
+        loadIndicatorOverlay.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
+        loadIndicatorOverlay.minWidthProperty().bind(this.widthProperty());
+        loadIndicatorOverlay.minHeightProperty().bind(this.heightProperty());
     }
 
     public String getSkin() {

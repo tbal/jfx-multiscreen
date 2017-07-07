@@ -1,0 +1,5 @@
+.load-indicator-overlay {
+    -fx-background-color: red;
+    -fx-opacity: 0.2;
+    -fx-background-image: url("../img/loading.gif");
+}
