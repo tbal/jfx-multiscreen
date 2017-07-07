@@ -78,7 +78,9 @@ public class RotateScreenTransition extends AbstractScreenTransition<RotateScree
 
                 parallelTransition.setNode(nextScreen);
                 parallelTransition.setOnFinished(e -> {
-                    screenManager.getChildren().remove(0);
+                    if (currentScreen != null) {
+                        screenManager.getChildren().remove(0);
+                    }
 
                     if (onFinished != null) {
                         onFinished.handle(e);
