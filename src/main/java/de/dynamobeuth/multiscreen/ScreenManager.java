@@ -6,7 +6,9 @@ import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import javax.naming.InvalidNameException;
 import java.io.File;
@@ -37,6 +39,8 @@ public class ScreenManager extends Pane {
     private Set<String> screensShown = new HashSet<>();
 
     private Pane loadingIndicatorOverlay;
+
+    private Pane shadeScreenOverlay;
 
 //    public ObservableValue<? extends EventHandler<? super KeyEvent>> onOnKeyPressedProperty;
 
@@ -240,6 +244,22 @@ public class ScreenManager extends Pane {
         loadingIndicatorOverlay.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
         loadingIndicatorOverlay.minWidthProperty().bind(this.widthProperty());
         loadingIndicatorOverlay.minHeightProperty().bind(this.heightProperty());
+    }
+
+    public void shadeScreen() {
+        if (shadeScreenOverlay == null) {
+            shadeScreenOverlay = new Pane();
+            shadeScreenOverlay.setOpacity(0.2);
+            shadeScreenOverlay.setStyle("-fx-background-color: black");
+        }
+
+        setEffect(new GaussianBlur(5.0D));
+        getChildren().add(shadeScreenOverlay);
+    }
+
+    public void unshadeScreen() {
+        setEffect(null);
+        getChildren().remove(shadeScreenOverlay);
     }
 
     public String getSkin() {
