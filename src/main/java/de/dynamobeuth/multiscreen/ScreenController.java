@@ -4,15 +4,15 @@ abstract public class ScreenController {
 
     private ScreenManager screenManager;
 
-//    private Application application;
-//
-//    public void setApplication(Application application) {
-//        this.application = application;
-//    }
-//
-//    public Application getApplication() {
-//        return application;
-//    }
+    private MultiScreenApplication application;
+
+    public void setApplication(MultiScreenApplication application) {
+        this.application = application;
+    }
+
+    public MultiScreenApplication getApplication() {
+        return application;
+    }
 
     public void setScreenManager(ScreenManager manager) {
         this.screenManager = manager;

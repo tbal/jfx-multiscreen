@@ -1,7 +1,6 @@
 package de.dynamobeuth.multiscreen;
 
 import de.dynamobeuth.multiscreen.animation.ScreenTransition;
-import javafx.application.Application;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +23,7 @@ import java.util.jar.JarFile;
 
 public class ScreenManager extends Pane {
 
-    private Application application;
+    private MultiScreenApplication application;
 
     private String skin = "default";
 
@@ -44,7 +43,7 @@ public class ScreenManager extends Pane {
 
 //    public ObservableValue<? extends EventHandler<? super KeyEvent>> onOnKeyPressedProperty;
 
-    public ScreenManager(Application application) {
+    public ScreenManager(MultiScreenApplication application) {
         super();
 
         this.application = application;
@@ -87,7 +86,7 @@ public class ScreenManager extends Pane {
         ScreenController controller = loader.getController();
 
         // inject application
-//        controller.setApplication(application);
+        controller.setApplication(application);
 
         // inject the current screenManager instance
         controller.setScreenManager(this);
