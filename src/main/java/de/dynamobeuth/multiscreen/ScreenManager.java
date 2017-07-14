@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 import javax.naming.InvalidNameException;
 import java.io.File;
@@ -40,8 +39,6 @@ public class ScreenManager extends Pane {
     private Pane loadingIndicatorOverlay;
 
     private Pane shadeScreenOverlay;
-
-//    public ObservableValue<? extends EventHandler<? super KeyEvent>> onOnKeyPressedProperty;
 
     public ScreenManager(MultiScreenApplication application) {
         super();
@@ -300,11 +297,10 @@ public class ScreenManager extends Pane {
     }
 
     /**
+     * Finds all views which are stored with the convention view/*View.fxml and returns them as map.
      * Inspired by https://stackoverflow.com/a/20073154
      *
-     * @return
-     * @throws IOException
-     * @throws URISyntaxException
+     * @return A map with viewName -> viewPath
      */
     private LinkedHashMap<String, URL> getViewsByConvention() {
         String appendedNamingConvention = "View.fxml";

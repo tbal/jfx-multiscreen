@@ -55,13 +55,4 @@ abstract public class ScreenController {
      */
     protected void onShow() {
     }
-
-    // TODO: integration should be possible; wait for use-case before implementation
-//    public void beforeHide() {
-//        System.out.println("show game view");
-//    }
-//
-//    public void hide() {
-//        System.out.println("hide game view");
-//    }
 }
